@@ -3,12 +3,13 @@ class NightWriter
   def translate_content
     content = File.read(ARGV[0]) if ARGV[0] == 'message.txt'
     char_length = content.length if ARGV[0] == 'message.txt'
+    content = to_braille(content) if ARGV[0] == 'message.txt'
     File.write(ARGV[1], content) if ARGV[0] == 'message.txt'
 
     puts "Created '#{ARGV[1]}' containing #{char_length} characters"
   end
 
-  def braille_lc_alphabet
+  def b_lc_alphabet
     braille = {
     'a' => "0.\n..\n..",
     'b' => "0.\n0.\n..",
@@ -35,12 +36,14 @@ class NightWriter
     'w' => ".0\n00\n.0",
     'x' => "00\n..\n00",
     'y' => "00\n.0\n00",
-    'z' => "0.\n.0\n00"}
+    'z' => "0.\n.0\n00",
+    ' ' => "..\n..\n..",
+    '\n' => "..\n..\n.."}
   end
 
   def to_braille(content)
-
-    braille_lc_alphabet[content]
+    chars = content.strip.split('')
+    chars.map {|letter| b_lc_alphabet[letter]}.join
   end
 end
 
