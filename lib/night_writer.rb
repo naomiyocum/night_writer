@@ -8,7 +8,7 @@ class NightWriter
     puts "Created '#{ARGV[1]}' containing #{char_length} characters"
   end
 
-  def to_braille(content)
+  def braille_lc_alphabet
     braille = {
     'a' => "0.\n..\n..",
     'b' => "0.\n0.\n..",
@@ -36,9 +36,12 @@ class NightWriter
     'x' => "00\n..\n00",
     'y' => "00\n.0\n00",
     'z' => "0.\n.0\n00"}
-    puts braille.keys
-    puts braille.values
+  end
+
+  def to_braille(content)
+
+    braille_lc_alphabet[content]
   end
 end
 
-NightWriter.new.to_braille('a')
+NightWriter.new.translate_content
