@@ -18,8 +18,12 @@ RSpec.describe NightWriter do
 
   describe '#to_braille' do
     it 'takes in file with English and returns file with Braille characters' do
-      expect(night_writer.to_braille('h')).to eq("0.\n00\n..")
-      expect(night_writer.to_braille('a')).to eq("0.\n..\n..")
+      expect(night_writer.to_braille('t')).to eq(".0\n00\n0.")
+      expect(night_writer.to_braille('u')).to eq("0.\n..\n00")
+      expect(night_writer.to_braille('r')).to eq("0.\n00\n0.")
+      expect(night_writer.to_braille('i')).to eq(".0\n0.\n..")
+      expect(night_writer.to_braille('n')).to eq("00\n.0\n0.")
+      expect(night_writer.to_braille('g')).to eq("00\n00\n..")
     end
   end
 end
