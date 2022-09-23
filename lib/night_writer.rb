@@ -60,11 +60,8 @@ class NightWriter
       full_doc << array1[count].join
       full_doc << array2[count].join
       full_doc << array3[count].join
-      "#{array1[count].join}\n#{array2[count].join}\n#{array3[count].join}"
       count += 1
     end
-
-    
     full_doc.join("\n")
   end
 end
