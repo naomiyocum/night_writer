@@ -1,13 +1,18 @@
 class NightWriter
-
-  def translate_content
-    content = File.read(ARGV[0]) if ARGV[0] == 'message.txt'
-    char_length = content.length if ARGV[0] == 'message.txt'
-    
-    content = to_braille(content) if ARGV[0] == 'message.txt'
-    File.write(ARGV[1], content) if ARGV[0] == 'message.txt'
-
-    puts "Created '#{ARGV[1]}' containing #{char_length} characters"
+  attr_reader :filename, :translated_file
+  
+  def initialize
+    @filename = ARGV[0]
+    @translated_file = ARGV[1]
+  end
+  
+  def read_content
+    File.read(filename)
+  end
+  
+  def write_content
+    File.write(translated_file, to_braille(read_content))
+    "Created '#{translated_file}' containing #{read_content.length} characters"
   end
 
   def b_lc_alphabet
@@ -66,4 +71,4 @@ class NightWriter
   end
 end
 
-NightWriter.new.translate_content
+# NightWriter.new.write_content
