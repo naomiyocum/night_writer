@@ -24,6 +24,8 @@ RSpec.describe NightWriter do
       expect(night_writer.to_braille('i')).to eq(".0\n0.\n..")
       expect(night_writer.to_braille('n')).to eq("00\n.0\n0.")
       expect(night_writer.to_braille('g')).to eq("00\n00\n..")
+      
+      expect(night_writer.to_braille('turing')).to eq(".00.0..00000\n00..000..000\n0.000...0...")
     end
   end
 end

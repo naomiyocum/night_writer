@@ -48,14 +48,23 @@ class NightWriter
     line2 = chars.map {|letter| b_lc_alphabet[letter][1]}.join
     line3 = chars.map {|letter| b_lc_alphabet[letter][2]}.join
     
-    "#{line1}\n#{line2}\n#{line3}"
+    array1 = line1.chars.each_slice(40).map{|fortys| fortys}
+    array2 = line2.chars.each_slice(40).map{|fortys| fortys}
+    array3 = line3.chars.each_slice(40).map{|fortys| fortys}
+    
+    count = 0
+    amount_of_lines = array1.count
+    
+    until count == amount_of_lines
+      puts "#{array1[count].join}\n#{array2[count].join}\n#{array3[count].join}"
+      count += 1
+    end
+    
+    # 
+    # require 'pry';binding.pry
+    # 
+    # "#{line1}\n#{line2}\n#{line3}"
   end
-
-  # def to_braille(content)
-  #   chars = content.strip.split('')
-  #   require 'pry';binding.pry
-  #   chars.map {|letter| b_lc_alphabet[letter]}.join("\n")
-  # end
 end
 
 NightWriter.new.translate_content
