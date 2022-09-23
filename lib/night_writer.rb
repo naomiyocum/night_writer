@@ -54,16 +54,18 @@ class NightWriter
     
     count = 0
     amount_of_lines = array1.count
+    full_doc = []
     
     until count == amount_of_lines
-      puts "#{array1[count].join}\n#{array2[count].join}\n#{array3[count].join}"
+      full_doc << array1[count].join
+      full_doc << array2[count].join
+      full_doc << array3[count].join
+      "#{array1[count].join}\n#{array2[count].join}\n#{array3[count].join}"
       count += 1
     end
+
     
-    # 
-    # require 'pry';binding.pry
-    # 
-    # "#{line1}\n#{line2}\n#{line3}"
+    full_doc.join("\n")
   end
 end
 
