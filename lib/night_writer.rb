@@ -48,9 +48,9 @@ class NightWriter
     line2 = chars.map {|letter| b_lc_alphabet[letter][1]}.join
     line3 = chars.map {|letter| b_lc_alphabet[letter][2]}.join
     
-    array1 = line1.chars.each_slice(40).map{|fortys| fortys}
-    array2 = line2.chars.each_slice(40).map{|fortys| fortys}
-    array3 = line3.chars.each_slice(40).map{|fortys| fortys}
+    array1 = line1.chars.each_slice(80).map{|eighties| eighties}
+    array2 = line2.chars.each_slice(80).map{|eighties| eighties}
+    array3 = line3.chars.each_slice(80).map{|eighties| eighties}
     
     count = 0
     amount_of_lines = array1.count
