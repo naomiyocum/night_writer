@@ -11,8 +11,8 @@ RSpec.describe NightReader do
   
   describe '#translate_content' do
     it 'reads CLI input and returns a line' do
-      allow(night_reader).to receive(:translate_content).and_return("Created 'original_message.txt' containing 256 characters")
-      expect(night_reader.translate_content).to eq("Created 'original_message.txt' containing 256 characters")
+      allow(nightreader).to receive(:translate_content).and_return("Created 'original_message.txt' containing 256 characters")
+      expect(nightreader.translate_content).to eq("Created 'original_message.txt' containing 256 characters")
     end
   end
 end
