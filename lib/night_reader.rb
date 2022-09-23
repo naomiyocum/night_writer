@@ -1,12 +1,21 @@
 class NightReader
-  def translate_content
-    content = File.read(ARGV[0]) if ARGV[0] == 'braille.txt'
-    char_length = content.length if ARGV[0] == 'braille.txt'
-    
-    File.write(ARGV[1], content) if ARGV[0] == 'braille.txt'
-
-    puts "Created '#{ARGV[1]}' containing #{char_length} characters"
+  attr_reader :filename, :back_to_eng
+  
+  def initialize
+    @filename = ARGV[0]
+    @back_to_eng = ARGV[1]
   end
+  
+  def read_content
+    File.read(filename)
+  end
+  
+  def write_content
+    File.write(back_to_eng, read_content)
+    p "Created '#{back_to_eng}' containing #{read_content.length} characters"
+  end
+  
+  
 end
 
-NightReader.new.translate_content
+# NightReader.new.write_content

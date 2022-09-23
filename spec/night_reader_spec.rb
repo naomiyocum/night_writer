@@ -1,18 +1,26 @@
 require './lib/night_reader'
 
 RSpec.describe NightReader do
-  let(:nightreader) {NightReader.new}
+  let(:night_reader) {NightReader.new}
   
   describe '#initialize' do
     it 'exists' do
-      expect(nightreader).to be_a(NightReader)
+      expect(night_reader).to be_a(NightReader)
     end
   end
   
-  describe '#translate_content' do
-    it 'reads CLI input and returns a line' do
-      allow(nightreader).to receive(:translate_content).and_return("Created 'original_message.txt' containing 256 characters")
-      expect(nightreader.translate_content).to eq("Created 'original_message.txt' containing 256 characters")
+  describe '#read_content' do
+    it 'reads content from the file' do
+      allow(night_reader).to receive(:filename).and_return('./testing_braille.txt')
+      expect(night_reader.read_content).to eq("0000..000.000....0.0..0.0.0.0.\n...0...0.....0..0.0....0.....0\n0.00..0...0.......0...00000.0.")
+    end
+  end
+  
+  describe '#write_content' do
+    it 'writes translated content' do
+      allow(night_reader).to receive(:filename).and_return('testing_braille.txt')
+      allow(night_reader).to receive(:back_to_eng).and_return('testing_original_message.txt')
+      expect(night_reader.write_content).to eq("Created 'testing_original_message.txt' containing 92 characters")
     end
   end
 end

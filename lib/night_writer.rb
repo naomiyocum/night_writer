@@ -12,7 +12,7 @@ class NightWriter
   
   def write_content
     File.write(translated_file, to_braille(read_content))
-    "Created '#{translated_file}' containing #{read_content.length} characters"
+    p "Created '#{translated_file}' containing #{read_content.length} characters"
   end
 
   def b_lc_alphabet
