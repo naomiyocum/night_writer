@@ -15,7 +15,7 @@ class NightReader
     p "Created '#{back_to_eng}' containing #{read_content.length} characters"
   end
   
-  def br_to_eng_dic
+  def english
     english = {
     [["0."],[".."],[".."]]=>"a",
     [["0."],["0."],[".."]]=>"b",
@@ -47,7 +47,12 @@ class NightReader
   
   def to_english(content)
     lines = content.split("\n")
-    
+    letter_array = []
+    lines.map do |line|
+      letter_array << [line]
+    end
+    english[letter_array]
+    # binding.pry
     # array = []
     # lines.map {|line| array << [line]}
     # braille_split = array.map {|line| line.first.scan(/../)}
