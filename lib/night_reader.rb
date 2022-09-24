@@ -45,6 +45,14 @@ class NightReader
     [[".."],[".."],[".."]]=>" "}
   end
   
+  def to_english(content)
+    lines = content.split("\n")
+    
+    # array = []
+    # lines.map {|line| array << [line]}
+    # braille_split = array.map {|line| line.first.scan(/../)}
+  end
+  
   
 end
 

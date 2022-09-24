@@ -23,4 +23,11 @@ RSpec.describe NightReader do
       expect(night_reader.write_content).to eq("Created 'testing_original_message.txt' containing 92 characters")
     end
   end
+  
+  describe '#to_english' do
+    it 'translates from Braille to English' do
+      expect(night_reader.to_english("0.\n.0\n00")).to eq('z')
+      expect(night_reader.to_english("0.\n..\n0.")).to eq('a')
+    end
+  end
 end
