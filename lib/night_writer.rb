@@ -1,13 +1,18 @@
 class NightWriter
-
-  def translate_content
-    content = File.read(ARGV[0]) if ARGV[0] == 'message.txt'
-    char_length = content.length if ARGV[0] == 'message.txt'
-    
-    content = to_braille(content) if ARGV[0] == 'message.txt'
-    File.write(ARGV[1], content) if ARGV[0] == 'message.txt'
-
-    puts "Created '#{ARGV[1]}' containing #{char_length} characters"
+  attr_reader :filename, :translated_file
+  
+  def initialize
+    @filename = ARGV[0]
+    @translated_file = ARGV[1]
+  end
+  
+  def read_content
+    File.read(filename).strip
+  end
+  
+  def write_content
+    File.write(translated_file, to_braille(read_content))
+    p "Created '#{translated_file}' containing #{read_content.length} characters"
   end
 
   def b_lc_alphabet
@@ -27,7 +32,7 @@ class NightWriter
     'm' => [["00"],[".."],["0."]],
     'n' => [["00"],[".0"],["0."]],
     'o' => [["0."],[".0"],["0."]],
-    'p' => [["00"],[".0"],["0."]],
+    'p' => [["00"],["0."],["0."]],
     'q' => [["00"],["00"],["0."]],
     'r' => [["0."],["00"],["0."]],
     's' => [[".0"],["0."],["0."]],
@@ -60,13 +65,10 @@ class NightWriter
       full_doc << array1[count].join
       full_doc << array2[count].join
       full_doc << array3[count].join
-      "#{array1[count].join}\n#{array2[count].join}\n#{array3[count].join}"
       count += 1
     end
-
-    
     full_doc.join("\n")
   end
 end
 
-NightWriter.new.translate_content
+NightWriter.new.write_content
