@@ -50,10 +50,10 @@ class NightReader
     lines = content.split("\n")
     lines.delete("")
     split_lines = lines.each_slice(3).map {|threes| threes}
-    wowza = split_lines.map {|b_line| b_line.map {|line| line.chars.each_slice(2).map(&:join)}}
+    full_doc = split_lines.map {|b_line| b_line.map {|line| line.chars.each_slice(2).map(&:join)}}
     
     full_letter = []
-    wowza.each do |b_lines|
+    full_doc.each do |b_lines|
       index = 0
       dots = b_lines[0].length
 
@@ -67,4 +67,4 @@ class NightReader
   end
 end
 
-NightReader.new.write_content
+# NightReader.new.write_content
