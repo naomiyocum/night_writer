@@ -7,7 +7,7 @@ class NightWriter
   end
   
   def read_content
-    File.read(filename)
+    File.read(filename).strip
   end
   
   def write_content

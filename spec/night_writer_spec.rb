@@ -12,7 +12,7 @@ RSpec.describe NightWriter do
   describe '#read_content' do
     it 'reads content from the file' do
       allow(night_writer).to receive(:filename).and_return('./testing_file.txt')
-      expect(night_writer.read_content).to eq("my name is zuko\n")
+      expect(night_writer.read_content).to eq("moo")
     end
   end
   
@@ -20,7 +20,7 @@ RSpec.describe NightWriter do
     it 'writes translated content' do
       allow(night_writer).to receive(:filename).and_return('./testing_file.txt')
       allow(night_writer).to receive(:translated_file).and_return('testing_braille.txt')
-      expect(night_writer.write_content).to eq("Created 'testing_braille.txt' containing 16 characters")
+      expect(night_writer.write_content).to eq("Created 'testing_braille.txt' containing 3 characters")
     end
   end
 

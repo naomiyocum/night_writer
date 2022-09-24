@@ -7,58 +7,59 @@ class NightReader
   end
   
   def read_content
-    File.read(filename)
+    File.read(filename).strip
   end
   
   def write_content
-    File.write(back_to_eng, read_content)
+    File.write(back_to_eng, to_english(read_content))
     p "Created '#{back_to_eng}' containing #{read_content.length} characters"
   end
   
   def english
     english = {
-    [["0."],[".."],[".."]]=>"a",
-    [["0."],["0."],[".."]]=>"b",
-    [["00"],[".."],[".."]]=>"c",
-    [["00"],[".0"],[".."]]=>"d",
-    [["0."],[".0"],[".."]]=>"e",
-    [["00"],["0."],[".."]]=>"f",
-    [["00"],["00"],[".."]]=>"g",
-    [["0."],["00"],[".."]]=>"h",
-    [[".0"],["0."],[".."]]=>"i",
-    [[".0"],["00"],[".."]]=>"j",
-    [["0."],[".."],["0."]]=>"k",
-    [["0."],["0."],["0."]]=>"l",
-    [["00"],[".."],["0."]]=>"m",
-    [["00"],[".0"],["0."]]=>"p",
-    [["0."],[".0"],["0."]]=>"o",
-    [["00"],["00"],["0."]]=>"q",
-    [["0."],["00"],["0."]]=>"r",
-    [[".0"],["0."],["0."]]=>"s",
-    [[".0"],["00"],["0."]]=>"t",
-    [["0."],[".."],["00"]]=>"u",
-    [["0."],["0."],["00"]]=>"v",
-    [[".0"],["00"],[".0"]]=>"w",
-    [["00"],[".."],["00"]]=>"x",
-    [["00"],[".0"],["00"]]=>"y",
-    [["0."],[".0"],["00"]]=>"z",
-    [[".."],[".."],[".."]]=>" "}
+    ["0.","..",".."]=>"a",
+    ["0.","0.",".."]=>"b",
+    ["00","..",".."]=>"c",
+    ["00",".0",".."]=>"d",
+    ["0.",".0",".."]=>"e",
+    ["00","0.",".."]=>"f",
+    ["00","00",".."]=>"g",
+    ["0.","00",".."]=>"h",
+    [".0","0.",".."]=>"i",
+    [".0","00",".."]=>"j",
+    ["0.","..","0."]=>"k",
+    ["0.","0.","0."]=>"l",
+    ["00","..","0."]=>"m",
+    ["00",".0","0."]=>"p",
+    ["0.",".0","0."]=>"o",
+    ["00","00","0."]=>"q",
+    ["0.","00","0."]=>"r",
+    [".0","0.","0."]=>"s",
+    [".0","00","0."]=>"t",
+    ["0.","..","00"]=>"u",
+    ["0.","0.","00"]=>"v",
+    [".0","00",".0"]=>"w",
+    ["00","..","00"]=>"x",
+    ["00",".0","00"]=>"y",
+    ["0.",".0","00"]=>"z",
+    ["..","..",".."]=>" "}
   end
   
   def to_english(content)
     lines = content.split("\n")
-    letter_array = []
-    lines.map do |line|
-      letter_array << [line]
+    
+    split_letters = lines.map {|line| line.chars.each_slice(2).map(&:join)}
+    
+    count = split_letters[0].length
+    index = 0
+    full_letter = []
+    count.times do
+      full_letter << split_letters.map {|letter| letter[index]}
+      index += 1
     end
-    english[letter_array]
-    # binding.pry
-    # array = []
-    # lines.map {|line| array << [line]}
-    # braille_split = array.map {|line| line.first.scan(/../)}
+    
+    translation = full_letter.map {|letter| english[letter]}.join('')
   end
-  
-  
 end
 
 # NightReader.new.write_content
