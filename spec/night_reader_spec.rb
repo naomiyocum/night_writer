@@ -32,4 +32,6 @@ RSpec.describe NightReader do
       expect(night_reader.to_english("000.0.\n...0.0\n0.0.0.")).to eq('moo')
     end
   end
+  
+  
 end

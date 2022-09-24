@@ -48,15 +48,19 @@ class NightReader
   
   def to_english(content)
     lines = content.split("\n")
+    lines.delete("")
+    split_lines = lines.each_slice(3).map {|threes| threes}
+    wowza = split_lines.map {|b_line| b_line.map {|line| line.chars.each_slice(2).map(&:join)}}
     
-    split_letters = lines.map {|line| line.chars.each_slice(2).map(&:join)}
-    
-    count = split_letters[0].length
-    index = 0
     full_letter = []
-    count.times do
-      full_letter << split_letters.map {|letter| letter[index]}
-      index += 1
+    wowza.each do |b_lines|
+      index = 0
+      dots = b_lines[0].length
+
+      dots.times do
+        full_letter << b_lines.map {|letter| letter[index]}
+        index += 1
+      end
     end
     
     translation = full_letter.map {|letter| english[letter]}.join('')
