@@ -46,14 +46,20 @@ class NightReader
     ["..","..",".."]=>" "}
   end
   
-  def to_english(content)
+  def split_to_lines(content)
     lines = content.split("\n")
     lines.delete("")
     split_lines = lines.each_slice(3).map {|threes| threes}
-    full_doc = split_lines.map {|b_line| b_line.map {|line| line.chars.each_slice(2).map(&:join)}}
-    
+  end
+  
+  def split_to_letters(content)
+    lines = split_to_lines(content)
+    full_doc = lines.map {|b_line| b_line.map {|line| line.chars.each_slice(2).map(&:join)}}
+  end
+  
+  def connecting_b_letters(content)
     full_letter = []
-    full_doc.each do |b_lines|
+    split_to_letters(content).each do |b_lines|
       index = 0
       dots = b_lines[0].length
 
@@ -62,9 +68,12 @@ class NightReader
         index += 1
       end
     end
-    
-    translation = full_letter.map {|letter| english[letter]}.join('')
+    full_letter
+  end
+  
+  def to_english(content)
+    translation = connecting_b_letters(content).map {|letter| english[letter]}.join('')
   end
 end
 
-# NightReader.new.write_content
+NightReader.new.write_content
