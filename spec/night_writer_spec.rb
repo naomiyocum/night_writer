@@ -24,6 +24,13 @@ RSpec.describe NightWriter do
     end
   end
   
+  describe '#split_string' do
+    it 'splits a string into separate letters' do
+      expected = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
+      expect(night_writer.split_string('hello world')).to eq(expected)
+    end
+  end
+  
   describe '#to_braille' do
     it 'takes in file with English and returns file with Braille characters' do
       expect(night_writer.to_braille('t')).to eq(".0\n00\n0.")
