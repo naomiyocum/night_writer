@@ -37,6 +37,13 @@ RSpec.describe NightReader do
     end
   end
   
+  describe '#connecting_letters' do
+    it 'connects each braille letter together' do
+      expected = [["00", "..", ".."], ["0.", ".0", "0."], ["0.", ".0", "0."], ["0.", "0.", "0."]]
+      expect(night_reader.connecting_letters("000.0.0.\n...0.00.\n..0.0.0.")).to eq(expected)
+    end
+  end
+  
   describe '#to_english' do
     it 'translates from Braille to English' do
       expect(night_reader.to_english("0.\n.0\n00")).to eq('z')
