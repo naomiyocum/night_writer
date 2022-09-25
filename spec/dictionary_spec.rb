@@ -15,4 +15,11 @@ RSpec.describe Dictionary do
       expect(dictionary.braille['n']).to eq(["00",".0","0."])
     end
   end
+  
+  describe '#english' do
+    it 'inverts the braille hash' do
+      expect(dictionary.english[["00",".0","0."]]).to eq('n')
+      expect(dictionary.english[["0.","..",".."]]).to eq('a')
+    end
+  end
 end

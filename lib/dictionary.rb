@@ -30,4 +30,8 @@ class Dictionary
     ' ' => ["..","..",".."]
   }
   end
+  
+  def english
+    braille.invert
+  end
 end
