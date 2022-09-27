@@ -47,4 +47,4 @@ class NightWriter < Dictionary
   end
 end
 
-# NightWriter.new.write_content
+NightWriter.new.write_content
