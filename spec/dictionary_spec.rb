@@ -9,7 +9,7 @@ RSpec.describe Dictionary do
     end
   end
   
-  describe '#meanings' do
+  describe '#braille' do
     it 'translates from english to braille and braille to english' do
       expect(dictionary.braille['a']).to eq(["0.","..",".."])
       expect(dictionary.braille['n']).to eq(["00",".0","0."])

@@ -46,4 +46,4 @@ class NightReader < Dictionary
   end
 end
 
-# NightReader.new.write_content
+NightReader.new.write_content

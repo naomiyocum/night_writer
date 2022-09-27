@@ -20,28 +20,31 @@ class NightWriter < Dictionary
   def split_string(content)
     content.strip.split('')
   end
-
-  def to_braille(content)
+  
+  def split_lines(content)
     line1 = split_string(content).map {|letter| braille[letter][0]}.join
     line2 = split_string(content).map {|letter| braille[letter][1]}.join
     line3 = split_string(content).map {|letter| braille[letter][2]}.join
     
-    array1 = line1.chars.each_slice(80).map{|eighties| eighties}
-    array2 = line2.chars.each_slice(80).map{|eighties| eighties}
-    array3 = line3.chars.each_slice(80).map{|eighties| eighties}
-    
+    arr_of_lines = []
+    arr_of_lines << line1.chars.each_slice(80).map{|eighties| eighties}
+    arr_of_lines << line2.chars.each_slice(80).map{|eighties| eighties}
+    arr_of_lines << line3.chars.each_slice(80).map{|eighties| eighties}
+    arr_of_lines
+  end
+
+  def to_braille(content)
     count = 0
-    amount_of_lines = array1.count
     full_doc = []
-    
-    until count == amount_of_lines
-      full_doc << array1[count].join
-      full_doc << array2[count].join
-      full_doc << array3[count].join
+    arr_lines = split_lines(content)
+    until count == arr_lines[0].count
+      full_doc << arr_lines[0][count].join
+      full_doc << arr_lines[1][count].join
+      full_doc << arr_lines[2][count].join
       count += 1
     end
     full_doc.join("\n")
   end
 end
 
-# NightWriter.new.write_content
+NightWriter.new.write_content
