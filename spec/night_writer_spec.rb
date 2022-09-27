@@ -9,13 +9,6 @@ RSpec.describe NightWriter do
     end
   end
   
-  describe '#read_content' do
-    it 'reads content from the file' do
-      allow(night_writer).to receive(:filename).and_return('./spec/spec_files/testing_file.txt')
-      expect(night_writer.read_content).to eq("moo")
-    end
-  end
-  
   describe '#write_content' do
     it 'writes translated content' do
       allow(night_writer).to receive(:filename).and_return('./spec/spec_files/testing_file.txt')
@@ -28,6 +21,15 @@ RSpec.describe NightWriter do
     it 'splits a string into separate letters' do
       expected = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
       expect(night_writer.split_string('hello world')).to eq(expected)
+    end
+  end
+  
+  describe '#split_lines' do
+    it 'separates braille letters into designated lines' do
+      expected = [[["0", ".", ".", "0"]], [["0", "0", "0", "."]], [[".", ".", ".", "."]]]
+      expect(night_writer.split_lines('hi')).to eq(expected)
+      expected = [[[".", "0", "0", ".", ".", "0"]], [["0", "0", ".", "0", "0", "0"]], [[".", "0", "0", ".", ".", "0"]]]
+      expect(night_writer.split_lines('wow')).to eq(expected)
     end
   end
   
