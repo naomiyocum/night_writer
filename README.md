@@ -35,8 +35,7 @@ The concept of night writing led to Louis Braille’s development of his [Braill
 * Atom
 
 ## Usage
-In your terminal, run `git clone` with the copied URL onto your local machine and navigate into the `night_writer` directory.<br>
-Now, we can start doing some translations!
+In your terminal, run `git clone` with the copied URL onto your local machine and navigate into the `night_writer` directory. Now, we can start doing some translations!
 
 ### English to Braille
 Open the `message.txt` file and update it with the message you would like to translate to Braille.<br>Return to your terminal and run the following command:
