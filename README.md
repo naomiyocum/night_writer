@@ -1,4 +1,4 @@
-# Night Writer
+<h1 align="center"> Night Writer </h1>
 
 ![GitHub language count](https://img.shields.io/github/languages/count/naomiyocum/night_writer)
 ![GitHub top language](https://img.shields.io/github/languages/top/naomiyocum/night_writer?color=yellow)
